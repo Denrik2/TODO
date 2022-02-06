@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TaskKit</title>
+    <link rel="shortcut icon" href="https://cdn.icon-icons.com/icons2/2420/PNG/512/list_task_to_do_list_icon_146882.png"
+          type="image/png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+    <link rel="stylesheet" href="{% static 'css/edit.css'%}" type="text/css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+<body>
+<nav class="navbar is-light" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <img src="https://www.brandbucket.com/sites/default/files/logo_uploads/369889/large_taskkit.png" width="75">
+    </div>
+    <div class="navbar-menu">
+        <div class="navbar-start">
+            <a class="navbar-item" href="{% url 'home' %}">
+                Home
+            </a>
+        </div>
+    </div>
+</nav>
+<section class="section">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="field has-addons">
+            <div class="control">
+                <input name="task" class="input" type="text" placeholder="{{ todo.task }}" value="{{ todo.task }}">
+                <input name="completed" type="hidden" value="{{ todo.completed }}">
+            </div>
+            <div class="control">
+                <button type="submit" class="button is-link">Изменить задачу</button>
+            </div>
+        </div>
+    </form>
+</section>
+</body>
+</html>
